@@ -1,0 +1,113 @@
+[POST][http://172.17.185.252:7000/device_service/update/testbed_metiral]
+(request)
+{
+    "task_id":113,
+    "testbed_pkg_path":"http://172.17.11.189:30080/usr/local/cabintestplatform_process_service/tmp/D03_I30TestBed.zip",
+    "metiral_pkg_path":"http://172.17.11.189:30080/usr/local/cabintestplatform_process_service/tmp/testpics.zip",
+    "testbed_type":"I30"
+}
+(reponse)
+{
+	"code" : 0,
+	"data" : 
+	[
+		{
+			"task_id" : 113
+		}
+	],
+	"msg" : "success"
+}
+
+[POST][http://172.17.185.252:7000/device_service/task/run]
+(request)
+{
+    "task_id":0,
+    "upload_result_dir_path":"http://172.17.11.189:30080/usr/local/cabintestplatform_process_service/tmp",
+    "testbed_type":"I30"
+}
+(reponse)
+{
+	"code" : 0,
+	"data" : 
+	[
+		{
+			"task_id" : 0
+		}
+	],
+	"msg" : "success"
+}
+
+[GET][http://172.17.185.252:7000/device_service/device/status]
+(request)
+{
+    "task_id": 282,
+    "reboot":0
+}
+(reponse)
+{
+	"code" : 0,
+	"data" : 
+	[
+		{
+			"device_status" : 1,
+			"device_status_msg" : "FREE ",
+			"task_id" : 282
+		}
+	],
+	"msg" : "success"
+}
+[GET][http://172.17.185.252:7000/device_service/task/status]
+(request)
+{
+    "task_id":989
+}
+(reponse)
+{
+	"code" : 0,
+	"data" : 
+	[
+		{
+			"task_id" : 989,
+			"task_status" : 329,
+			"task_status_msg" : "DIVORCED RETURN_SUCCESS UPLOAD_FAIL UPLOADED "
+		}
+	],
+	"msg" : "success"
+}
+
+[GET][http://172.17.185.252:7000/device_service/sdk/version]
+(request)
+{
+    "task_id":552,
+    "testbed_type":"I30"
+}
+(reponse)
+{
+	"code" : -5,
+	"data" : 
+	[
+		{
+			"sdk_version" : "",
+			"task_id" : 552,
+			"testbed_version" : ""
+		}
+	],
+	"msg" : "fail"
+}
+
+[GET][http://172.17.185.252:7000/device_service/task/terminate]
+(request)
+{
+    "task_id":2342
+}
+(reponse)
+{
+	"code" : -1,
+	"data" : 
+	[
+		{
+			"task_id" : 2342
+		}
+	],
+	"msg" : "fail"
+}

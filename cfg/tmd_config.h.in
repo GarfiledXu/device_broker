@@ -1,0 +1,1 @@
+#cmakedefine PC_PLATFORM @PC_PLATFORM@

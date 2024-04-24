@@ -1,0 +1,21 @@
+[tongfei]
+{
+    "version": "ARCSOFT_ARCALG_2.4.400235194.0_APP_GREATWALL_20230104_normal_AUTOBUILD_B07_inner_b2",
+    "resultfilecount": 2,
+    "resultfilelist": [
+        "gtestresult_DMS.xml",
+        "gtestresult_OMS.xml"
+    ]
+}
+[standard]
+{
+    "sdk_version":"xxx",
+    "testbed_version":"xxxx",
+    "result":{
+        "file_count":3,
+        "file_list":[
+            "gtestresult_DMS.xml",
+            "gtestresult_OMS.xml"
+        ]
+    }
+}

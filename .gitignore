@@ -1,0 +1,7 @@
+build/*
+out/*
+/CMakeLists.txt
+/focus.py
+.vscode/*
+D-offline/script/python/__pycache__/*
+compile_info.h

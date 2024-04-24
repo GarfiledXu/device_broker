@@ -1,0 +1,144 @@
+[request, test] 
+METHOD_URI("POST", "/device_service/test")
+request_body:{
+    "task_id":100
+}
+response_body:{
+    "code":0,
+    "msg":"success",
+    "data":[
+        {
+            "task_id":0
+        }
+    ]
+}
+
+[request, update testbed and metiral]
+METHOD_URI("POST", "/device_service/update/testbed_metiral")
+request_body:{
+    "task_id":0,
+    "testbed_pkg_path":"xxxxx/xxx/xx.zip",
+    "metiral_pkg_path":"xxx/xxx/xx.zip",
+}
+response_body:{
+    "code":0,
+    "msg":"success",
+    "data":[
+        {
+            "task_id":0,
+        }
+    ]
+}
+[request, task run new]
+METHOD_URI("POST", "/device_service/task/run")
+request_body:{
+    "task_id":0,
+    "upload_result_dir_path":"xx/xxx/xx",
+    "testbed_dir_name":"xxx",
+    "metiral_dir_name":"xxx",
+    "testbed_name":"xx"
+}
+response_body:{
+    "code":0,
+    "msg":"success",
+    "data":[
+        {
+            "task_id":0,
+        }
+    ]
+}
+
+[request, query device status] 
+METHOD_URI("GET", "/device_service/device/status") 
+request_body:{
+    "task_id":100,
+    "reboot":0,
+}
+response_body:{
+    "code":0,
+    "msg":"success",
+    "data":[
+        {
+            "task_id":100,
+            "device_status":1233,
+            "device_status_msg":"FREE"
+        }
+    ]
+}
+
+[request, query task status] 
+METHOD_URI("GET", "/device_service/task/status")
+request_body:{
+    "task_id":112
+}
+response_body:{
+    "code":0,
+    "msg":"success",
+    "data":[
+        {
+            "task_id":112,
+            "task_status":130,
+            "task_status_msg":"DIVORCED RETURN_SUCCESS UPLOADED UPLOAD_FAIL"
+        }
+    ]
+}
+
+[request, query sdk version]
+METHOD_URI("GET", "/device_service/sdk/version")
+request_body:{
+    "task_id":1123,
+    "testbed_name":"xx",
+    "testbed_dir_name":"xx"
+}
+response_body:{
+    "code":0,
+    "msg":"success",
+    "data":[
+        {
+            "task_id":1123,
+            "sdk_version":"xxxxxx",
+            "testbed_version":"NON"
+        }
+    ]
+}
+
+[request, upload result] [not use, only reserve]
+METHOD_URI("POST", "/device_service/task/upload_result")
+[request, update testbed] [not use, only reserve]
+METHOD_URI("POST", "/device_service/testbed/update")
+[request, update metiral] [not use, only reserve]
+METHOD_URI("POST", "/device_service/metiral/update")
+[request, terminate task] [not use, only reserve]
+METHOD_URI("POST", "/device_service/task/terminate")
+
+
+
+[device status]
+(each enum):
+STATE_DEVICE_INVALID: -1,
+FREE: 1,
+BUSY: 2
+[task status]
+(each enum):
+STATE_TASK_INVALID = -1,
+DIVORCED = 1,
+ACCEPTED = 2,
+RUNNING = 4,
+RETURN_SUCCESS = 8,
+RETURN_ERROR = 16,
+UPLOADING = 32,
+UPLOADED = 64,
+UPLOAD_SUCCESS = 128,
+UPLOAD_FAIL = 256
+(Absolute value comparison):
+
+{
+    "version": "ARCSOFT_ARCALG_2.4.400235194.0_APP_GREATWALL_20230104_normal_AUTOBUILD_B07_inner_b2",
+    "resultfilecount": 2,
+    "resultfilelist": [
+        "gtestresult_DMS.xml",
+        "gtestresult_OMS.xml"
+    ]
+}
+//压缩包名要与压缩包内的文件同名
+//压缩包内要有一层根目录

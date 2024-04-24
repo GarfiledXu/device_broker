@@ -1,0 +1,23 @@
+[active update info]
+{
+    add loop testbed running future status, if testbed thread return(set status) to upload result(set status)
+    add loop update file future status, if update thread return (set status) //wait for each other query status to decide whether send reset request //1、confirm each other sync update info, reboot machine
+}
+[update devcie testbed and metiral]
+get request info:
+{
+    launch thread to download pack and update to device local:
+    return ;
+}
+response:
+
+
+[launch testbed]
+
+
+
+[query device status] [query task status] [query sdk version]
+[machine reset]
+default: status: ADD REBOOT_SUCCESS!
+get reset request: REDUCE REBOOT_SUCCESS!
+each other query reset status, which value equal fail it's mean not reboot success, if equal success! mean reboot success
