@@ -1,0 +1,71 @@
+modify_date="2023/11/06"
+
+[version]
+correspond_parse_version="2.0.1"
+
+[license]
+# true, to update license by remote, override the local license
+#default is true, if false to using default license 
+if_update=true
+#default is false
+if_update_false_to_continue=false
+# file or dir 
+# stage: download file or dir -> then to rename file or dir -> then cp to relative dir as sub file
+update_file_or_dir_rename="license.dat"
+update_cp_to_dir="./readonly/xx"
+
+## executed after all file update
+# if check fail, to stop task
+[must]
+# contain the file and dir, if one of the input list exist, current expression return true
+# and to continue task
+check_file_or=[
+]
+# need all of the input list exist, current expression will return true,  otherwise, all returns will fail
+# and to termination procedure
+check_file_and=[
+]
+
+[performance]
+run_testbed_process_max=1
+
+# all module common
+# <sin_video> <sin_image> <sin_videos> <sin_images> <sin_video_dir> <sin_image_dir>
+# <sin_result_dir> 
+
+### for command line update and cumstom
+### out to testbed variable :
+# <outin_video_local_path>
+# <outin_video_url_path>
+# <outin_result_dir_path>
+# <outin_cfg_local_path>
+# <outin_cfg_url_path>
+# <outin_call_count_in_cur_task>
+# <outin_read_text_append>
+
+[[server_to_exec_dms]]
+### cmd 命令行 变量 格式: <sin_name>
+### cmd 命令行 变量 来源：
+# 1.server 提前内置的变量 <sin_material> <sin_result_dir> 等
+# 2.配置文件中 cmd_<name> 形式定义的key value  => 对应在命令行中使用的变量 <sin_<name>>
+## 配置文件定义变量时，可以带操作 cmd_read_text = "<opt:io_file>./extern.txt"  实现自定义读取文件并填充到命令行
+## ./extern.txt读取文件内容，赋值给变量cmd_read_text，而cmd_read_text => sin_read_text,可以在命令行占位中使用
+enable=true
+cmd="./<sin_exe_name> --mode=dms --material=<sin_material> --result=<sin_result_dir> --speed=40 --extern=<sin_read_text_append>"
+cmd_exe_name="TESTBED_PLATFORM"
+cmd_read_text="<opt:io_file>./extern.txt"
+
+cmd_timeout_s=10
+if_parallel=false
+cmd_result_right_value=[0, -1, 2]
+## 0: or 1: and
+result_check_mode=0
+## 0: if last cmd not parallel and success(include not timeout and result right)
+execute_condition=0
+
+[[server_to_exec_oms]]
+
+
+
+[[server_to_exec_face]]
+

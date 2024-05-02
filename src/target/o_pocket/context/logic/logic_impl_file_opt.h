@@ -12,6 +12,7 @@
 #include "samba_transfer.h"
 
 int update_testbed_and_replace(const std::string& in_url, const std::string& dst_dir_path, const std::string& cache_dir_path, std::map<std::string, std::string> replace_list);
+int down_file_and_replace(const std::string& in_url, const std::string& dst_dir_path, const std::string& cache_dir_path);
 
 
 int unzip_testbed(const std::string& in_url, const std::string& dst_dir_path, const std::string& cache_dir_path);

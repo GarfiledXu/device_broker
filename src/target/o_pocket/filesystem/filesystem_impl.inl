@@ -249,7 +249,7 @@ inline int clean_folder(const std::string& src_folder) {
 
 inline int delete_file(const std::string& src_file, const bool to_contain_src_folder) {
     try {
-        if (fs::exists(src_file)) {
+        if (!fs::exists(src_file)) {
             return -1;
         }
         if (fs::is_regular_file(src_file)) {
@@ -264,6 +264,7 @@ inline int delete_file(const std::string& src_file, const bool to_contain_src_fo
         } 
     }
     catch (const std::exception& e) {
+        SLOGE("delete file fail! what:{}", e.what());
         return -10; 
     }
     return 0;
@@ -316,7 +317,6 @@ inline int obtain_folder_remain_space(const std::string& src_folder, size_t& out
 
     return 0; 
 }
-
 
 
 END_NAMESPACE(fs_impl)

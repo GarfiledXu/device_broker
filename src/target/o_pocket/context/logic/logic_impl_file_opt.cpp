@@ -1,6 +1,64 @@
 #include "logic_impl_file_opt.h"
 //
 // #include <sys/shutdown.h>
+int down_file_and_replace(const std::string& in_url, const std::string& dst_dir_path, const std::string& cache_dir_path) {
+
+    int ret = 0;
+    TimeInterval<> time_interval{};
+
+    //check space
+    if (url_space_measure(in_url, dst_dir_path)) {
+        SLOGE("will stop unzip testbed, space check not pass");
+        return -1;
+    }
+    
+    //prepare dst dir
+    SLOGD("start prepare cache dir path:{}", cache_dir_path);
+    ret = FsImpl::clean_folder(cache_dir_path);
+    if (ret) {
+        SLOGE("prepare cache dir fail! path:{}, ret:{}", cache_dir_path, ret);
+        return -2;
+    }
+
+    //down url to tmp
+    auto extract_filename_from_url = [=]() -> std::string {
+        std::regex pattern("[^/]+$");
+        std::smatch match;
+        if (std::regex_search(in_url, match, pattern)) {
+            return match.str(); 
+        }
+        else {
+            return "";
+        }
+    };
+    std::string tmp_file = fmt::format("{}/{}", cache_dir_path, extract_filename_from_url());
+    SLOGD("start http download url:{}, to local file:{}", in_url, tmp_file);
+    ret = http_download(in_url, tmp_file);
+    if (ret) {
+        SLOGE("http download url fail! ret:{}, url:{}, dst local file:{}", ret, in_url, tmp_file);
+        return -3;
+    }
+
+    //move file
+    ret = mv_file_to_target(tmp_file, dst_dir_path, false);
+    if (ret) {
+        SLOGE("mv file to target fail! src:{}, target:{}", tmp_file, dst_dir_path);
+        return -4;
+    }
+
+    //clean
+    SLOGD("start clean cache dir path:{}", cache_dir_path);
+    ret = FsImpl::clean_folder(cache_dir_path);
+    if (ret) {
+        SLOGE("clean cache dir fail! path:{}, ret:{}", cache_dir_path, ret);
+        return -5;
+    }
+
+    SLOGI("down_file_and_replace finished! cost time: [{}] ms", time_interval.get_interval_ms());
+
+    return 0;
+}
+
 int update_testbed_and_replace(const std::string& in_url, const std::string& dst_dir_path, const std::string& cache_dir_path, std::map<std::string, std::string> replace_list) {
     int ret = 0;
     ret = unzip_testbed(in_url, dst_dir_path, cache_dir_path);

@@ -1,80 +1,10 @@
-#include "state_mgr.h"
-#include "signal_handle.h"
-#include "log.h"
-
-extern std::map<int, std::string> g_post_err_map =
-{
-    {-1, "device is busy, task reject"},
-    {-2, "input task param error"}
-};
-
-bool StateMgr::is_to_stop_()
-{
-    return SignalHandle::ins().signal_status_SIGINT() || to_stop_;
-}
-
-void StateMgr::post_task_info(int task_type, ns::UpdateTaskInfo info)
-{
-    post_task(task_type);
-    update_task_info_ = info;
-    return;
-};
-
-bool StateMgr::post_task(const int task)
-{
-    SLOGD("enter post task, task:{}", task);
-    is_task_come = true;
-    if (task == -1) {
-        cv_.notify_one();
-        return true;
-    }
-    std::unique_lock<std::mutex> lock(mtx_);
-    come_task.post_task = task;
-
-    come_task.err_code = 0;
-    come_task.err_msg = "";
-    if (is_busy()) {
-        SLOGW("post task, state is busy, will out post");
-        come_task.err_code = -1;
-        come_task.err_msg = "device busy";
-        return false;
-    }
-    cv_.notify_all();
-    SLOGD("out post task and notify, task:{}", task);
-    return true;
-}
-
-bool StateMgr::wait_task()
-{
-    SLOGW("wait for task");
-    std::unique_lock<std::mutex> lock(mtx_);
-    cv_.wait(lock, [&] { return is_task_come || is_to_stop_(); });
-    if (is_to_stop_()) {
-        SLOGW("wait task, get to stop state");
-        return false;
-    }
-    //get task
-    SLOGW("get task");
-    on_task = come_task;
-    SLOGD("out wait task");
-    return true;
-};
-
-void StateMgr::begin_task()
-{
-
-}
-
-void StateMgr::end_task()
-{
-    is_task_come = false;
-}
+#include "task_suit.h"
 
 bool TaskSuitBase::to_stop_signal()
 {
     struct tmp_stop {
         tmp_stop(std::condition_variable& incv) : cv(incv) {};
-        ~tmp_stop() { cv.notify_all(); };
+        ~tmp_stop() { cv.notify_all(); SLOGW("to_stop_signal cv to notify all"); };
         std::condition_variable& cv;
     };
     tmp_stop{ cv_ };

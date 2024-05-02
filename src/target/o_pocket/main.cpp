@@ -7,10 +7,7 @@
 int main(int argc, char** argv) {
 
     REGISTER_SIGINT_HANDLE();
-
     return cmd_entry(argc, argv);
-
-
 
     return 0;
 }

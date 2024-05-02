@@ -7,6 +7,7 @@
 //using state machine, post enum only, and return by same function
 //option3
 //post task to threadloop, when task finished update value to global info which reference by http query state
+#if 0
 bool Threadlooper_I30_Qnx700::do_init()
 {
     SLOGW("enter do init");
@@ -50,3 +51,4 @@ bool Threadlooper_I30_Qnx700::do_release()
     SLOGW("enter do release");
     return false;
 }
+#endif

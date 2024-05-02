@@ -197,6 +197,7 @@ public:
 
 
 
+//./new_service function  smb_download --url=smb://172.17.186.67/smb_test/1.jpg  --dst_dir=./test --user=ff --wg=arcsoft-hz --passwd=xjf.4776289f
 //./new_service function  smb_download --url=smb://172.17.11.202/objective_result/1645/1645/0/result.txt  --dst_dir=./test --user=yhw9826 --wg=arcsoft-hz --passwd=Yhw@2023@
 //./new_service function  smb_download --url=smb://172.17.10.122/Arcsoft-hz_facesample/DMS/打哈欠/test/CS1E-DMS_1_02_0330389c9cf4bbcb3e67a090639ff8de.jpg  --dst_dir=./test --user=yhw9826 --wg=arcsoft-hz --passwd=Yhw@2023@
 //./new_service function  smb_download --url=smb://172.17.10.122/arcsoft-hz_facesample/dms/打哈欠/test/cs1e-dms_1_02_0330389c9cf4bbcb3e67a090639ff8de.jpg  --dst_dir=./test --user=yhw9826 --wg=arcsoft-hz --passwd=Yhw@2023@

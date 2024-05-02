@@ -17,6 +17,7 @@ static remote_filesystem* base_filesystem = new gf_rfs_curl(
         }
     }
 );
+
 int http_download(const std::string& in_url, const std::string& target_local_file) {
     TimeInterval<> time_interval{};
     auto cur_ret = base_filesystem->download_file(in_url, target_local_file);

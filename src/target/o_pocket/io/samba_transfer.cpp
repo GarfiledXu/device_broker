@@ -407,10 +407,13 @@ int SambaTransfer::UploadAll(){
          SLOGE("Fail : stat(fileUploadPath) , ret :{}", ret);
         return -5;
     }
+    #if 1
     if(!S_ISDIR(st.st_mode)){
-         SLOGE("Fail : qnx upload dir path{} is incorrect", fileUploadPath.c_str());
+         SLOGE("Fail : qnx upload dir path: {} is incorrect", fileUploadPath.c_str());
         return -6;
     }
+    #endif
+    
     allFilePaths.clear();
     allUploadFileSize = 0;
     SetFilePaths(); 

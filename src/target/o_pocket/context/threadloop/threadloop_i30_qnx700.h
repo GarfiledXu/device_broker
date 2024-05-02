@@ -1,8 +1,9 @@
 #pragma once
 #include "threadloop_base.h"
-#include "state_mgr.h"
+#include "state_suit.h"
 
 //override switch state logic
+#if 0
 class Threadlooper_I30_Qnx700 : public ThreadlooperBase
 {
 public:
@@ -23,3 +24,5 @@ public:
     }
 };
 
+
+#endif

@@ -25,6 +25,10 @@ error/test/test_errorcode.cpp
 error/errorcode.cpp
 io/http_transfer.cpp
 io/samba_transfer.cpp
+io/rabbitmq_handle.cpp
+io/sqlite.cpp
+io/smbmm.cpp
+io/sqlite.cpp
 # context/logic_impl.cpp
 # context/http_service_handle_objective.cpp
 # context/state.cpp
@@ -33,12 +37,15 @@ ${context_src_list}
 
 http/http_server.cpp
 http/http_handler.cpp
+
+
 )
 target_include_directories(${cur_exe_name1} PRIVATE 
 .
 log
 cmd
 io
+cfg
 compress
 common
 filesystem
@@ -46,17 +53,24 @@ error
 
 context/http_handle
 context/logic
-context/state_mgr
+context/logic/objecitve
+context/task_suit
 context/threadloop
+context/logic/file_opt
+
 
 http
 signal
 )
 add_module_list(${cur_exe_name1} 
+"m_rabbitmq"
 "m_mongoose" 
 # "m_internal"
+
+"m_wheel"
+"m_sqlite"
 "m_jsonhpp"
-# "m_component"
+"m_component"
 "m_gtest"
 "m_fmt"
 "m_filesystem"

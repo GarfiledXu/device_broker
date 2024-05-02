@@ -17,7 +17,7 @@
 #include "http_service_handle_objective.h"
 
 #include "threadloop_base.h"
-#include "threadloop_i30_qnx700.h"
+#include "threadloop_objective.h"
 
 int http_service_objective();
 
@@ -27,20 +27,3 @@ int http_service_objective_i30();
 
 int websocket_service_device_ping();
 
-class ObjectiveComponentManager {
-public:
-    ~ObjectiveComponentManager() = default;
-    ObjectiveComponentManager& ins() {
-        static ObjectiveComponentManager static_ins;
-        return static_ins;
-    }
-
-    int load();
-    int unload();
-
-private:
-    ObjectiveComponentManager() = default;
-    //threadpool
-    //samba
-    //rabbitmq
-};

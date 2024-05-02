@@ -17,8 +17,6 @@ for (auto& cur_option : vec_option_##name) { \
     cur_option->to_add_option(*sub_cmd_##name); \
 } \
 
-
-
 //遍历所有选项，判断子选项是否存在，存在则执行 
 #define FILTER_SUB_CMD(inapp, name) \
 if (inapp.got_subcommand(#name)) { \
@@ -29,8 +27,6 @@ if (inapp.got_subcommand(#name)) { \
             } \
         } \
     }
-
-
 
 // #define DEF_SUB_CMD(name, name_str, descript, ...) \
 // auto* sub_cmd_##name= cli_root.add_subcommand(name_str, descript); \

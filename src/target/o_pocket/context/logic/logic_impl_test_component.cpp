@@ -92,62 +92,62 @@ int backend_load_http_file_proxy_server()
 //pass
 int test_threadloop_front()
 {
-    Threadlooper_I30_Qnx700 threadlooper{};
-    threadlooper.launch_front();
+    // ThreadloopObjectiveFSM threadlooper{};
+    // threadlooper.launch_front();
     return 0;
 }
 
 //pass
 int test_threadloop_back()
 {
-    Threadlooper_I30_Qnx700 threadlooper{};
-    threadlooper.launch_back();
-    // threadlooper.join();
-    SLOGD("enter sleep 3000 ms");
-    std::this_thread::sleep_for(std::chrono::milliseconds(3000));
-    SLOGD("out sleep 3000 ms");
+    // Threadlooper_I30_Qnx700 threadlooper{};
+    // threadlooper.launch_back();
+    // // threadlooper.join();
+    // SLOGD("enter sleep 3000 ms");
+    // std::this_thread::sleep_for(std::chrono::milliseconds(3000));
+    // SLOGD("out sleep 3000 ms");
     return 0;
 }
 
 //pass
 int test_threadloop_back_detach()
 {
-    Threadlooper_I30_Qnx700 threadlooper{};
-    threadlooper.launch_back();
-    threadlooper.detach();
-    SLOGD("enter sleep 3000 ms");
-    std::this_thread::sleep_for(std::chrono::milliseconds(3000));
-    SLOGD("out sleep 3000 ms");
+    // Threadlooper_I30_Qnx700 threadlooper{};
+    // threadlooper.launch_back();
+    // threadlooper.detach();
+    // SLOGD("enter sleep 3000 ms");
+    // std::this_thread::sleep_for(std::chrono::milliseconds(3000));
+    // SLOGD("out sleep 3000 ms");
     return 0;
 }
 
 //pass
 int test_threadloop_back_join()
 {
-    Threadlooper_I30_Qnx700 threadlooper{};
-    threadlooper.launch_back();
-    threadlooper.join();
+    // Threadlooper_I30_Qnx700 threadlooper{};
+    // threadlooper.launch_back();
+    // threadlooper.join();
     return 0;
 }
 
 //pass
 int test_http_server_with_state_manager()
 {
-    TimeInterval<> time_interval{};
-    MgHttpServer mg_http_server{
-        {
-            {"http://0.0.0.0:12345", http_server_objective_callback}, 
-        },
-        5000,
-        5000
-    };
-    // thread looper
-    Threadlooper_I30_Qnx700 threadlooper{};
-    threadlooper.launch_back();
+    // TimeInterval<> time_interval{};
+    // MgHttpServer mg_http_server{
+    //     {
+    //         {"http://0.0.0.0:12345", http_server_objective_callback}, 
+    //     },
+    //     5000,
+    //     5000
+    // };
+    // // thread looper
+    // Threadlooper_I30_Qnx700 threadlooper{};
+    // threadlooper.launch_back();
     
-    mg_http_server.launch();
-    SLOGW("mg_http_server1 out");
-    threadlooper.to_stop();
-    threadlooper.join();
-    SLOGW("out test http server, cost time: [{}] ms", time_interval.get_interval_ms());
+    // mg_http_server.launch();
+    // SLOGW("mg_http_server1 out");
+    // threadlooper.to_stop();
+    // threadlooper.join();
+    // SLOGW("out test http server, cost time: [{}] ms", time_interval.get_interval_ms());
 }
